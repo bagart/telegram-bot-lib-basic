@@ -4,7 +4,7 @@
 
 | Need | File |
 |---|---|
-| What it does, decisions | `SDD-basic-lib` |
+| What it does, decisions | [`sdd/basic-lib.md`](sdd/basic-lib.md) |
 
 ## Source map (src/)
 
