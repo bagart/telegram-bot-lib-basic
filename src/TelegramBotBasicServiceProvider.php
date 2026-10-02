@@ -11,6 +11,7 @@ use BAGArt\TelegramBotBasic\Commands\Demo\ExampleParallelFuturesCommand;
 use BAGArt\TelegramBotBasic\Commands\Demo\ExampleSequentialCommand;
 use BAGArt\TelegramBotBasic\Commands\Demo\ExampleTransportComparisonCommand;
 use BAGArt\TelegramBotBasic\Commands\TgChattingCommand;
+use BAGArt\TelegramBotBasic\Commands\TgPollerCommand;
 use BAGArt\TelegramBotBasic\Commands\TgWhoamiCommand;
 use BAGArt\TelegramBotBasic\Commands\WebhookCommand;
 use Illuminate\Support\ServiceProvider;
@@ -18,6 +19,7 @@ use Illuminate\Support\ServiceProvider;
 class TelegramBotBasicServiceProvider extends ServiceProvider
 {
     protected array $commands = [
+        TgPollerCommand::class,
         WebhookCommand::class,
         TgWhoamiCommand::class,
         DemoSendPollCommand::class,

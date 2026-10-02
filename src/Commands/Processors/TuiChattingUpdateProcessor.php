@@ -9,7 +9,7 @@ use BAGArt\TelegramBot\CLI\Chatting\Input\EnterPressedEvent;
 use BAGArt\TelegramBot\CLI\Chatting\Input\EscapeSequenceEvent;
 use BAGArt\TelegramBot\CLI\Chatting\Input\PrintableCharEvent;
 use BAGArt\TelegramBot\CLI\Chatting\Input\TerminalInputHandler;
-use BAGArt\TelegramBot\CLI\Chatting\TerminalUiRenderer;
+use BAGArt\TelegramBot\CLI\Chatting\TerminalUiRendererInterface;
 use BAGArt\TelegramBot\CLI\Chatting\TuiChatSession;
 use BAGArt\TelegramBot\Configs\TgBotConfig;
 use BAGArt\TelegramBot\Contracts\ApiCommunication\TgBotApiDTOClientContract;
@@ -35,7 +35,7 @@ final class TuiChattingUpdateProcessor implements TgTypeDTOProcessorContract
         private readonly TgBotConfig $botConfig,
         private readonly TuiChatSession $chatSession,
         private readonly TerminalInputHandler $inputHandler,
-        private readonly TerminalUiRenderer $uiRenderer,
+        private readonly TerminalUiRendererInterface $uiRenderer,
         private readonly TgOutputWrapper $output,
         private readonly bool $isStrictOrdered = false,
     ) {

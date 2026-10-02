@@ -82,4 +82,4 @@ Shared long-polling setup logic: creates `TgBotConfig`, `TgPollerConfig`,
 
 Tests use Pest PHP with pure unit/model inspection pattern (no DB).
 
-Existing: WebhookCommandTest, ArtisanExtraTraitTest, TokenResolverTraitTest.
+Existing: WebhookCommandTest, ArtisanExtraTraitTest, TokenResolverTraitTest, TgPollerCommandTest, TgWhoamiCommandTest, TgChattingCommandTest, ConsoleEchoUpdateProcessorTest, TuiChattingUpdateProcessorTest, TelegramBotBasicServiceProviderTest.

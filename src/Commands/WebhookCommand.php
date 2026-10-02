@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace BAGArt\TelegramBotBasic\Commands;
 
 use BAGArt\TelegramBot\Configs\TgBotConfig;
+use BAGArt\TelegramBot\Configs\TgPollerConfig;
 use BAGArt\TelegramBot\Contracts\ApiCommunication\TgBotApiDTOClientContract;
 use BAGArt\TelegramBot\TgApi\Methods\DTO\GetMeMethodDTO;
 use BAGArt\TelegramBot\TgApi\Types\DTO\UserTypeDTO;
@@ -193,20 +194,29 @@ class WebhookCommand extends Command
         return $prompt ? $prompt() : null;
     }
 
-    private function resolveAllowedUpdates(?WebhookInfoTypeDTO $currentInfo): array
+    protected function resolveAllowedUpdates(?WebhookInfoTypeDTO $currentInfo): array
     {
         $cliValue = $this->option('allowed-updates');
         if ($cliValue !== [] && $cliValue !== ['*']) {
             return $cliValue;
         }
 
-        $default = $currentInfo?->allowedUpdates
-            ?: ['message', 'edited_channel_post', 'callback_query'];
-
         return multiselect(
             label: 'Allowed updates',
             options: array_combine(self::ALLOWED_UPDATES, self::ALLOWED_UPDATES),
-            default: $default,
+            default: $this->allowedUpdatesDefault($currentInfo),
         );
+    }
+
+    /**
+     * An explicit webhook allowed_updates list is operator-owned and kept
+     * verbatim; a webhook without one falls back to the platform default
+     * subscription (ADR-002 layer 1 — includes chat_member / my_chat_member).
+     *
+     * @return list<string>
+     */
+    public function allowedUpdatesDefault(?WebhookInfoTypeDTO $currentInfo): array
+    {
+        return $currentInfo?->allowedUpdates ?: TgPollerConfig::DEFAULT_ALLOWED_UPDATES;
     }
 }
